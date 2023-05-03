@@ -1,12 +1,16 @@
-import React from 'react'
-import "./ToDoList.scss"
+import React from 'react';
+import './ToDoList.scss';
 
-const ToDoList = () => {
+const ToDoList = ({ listItems }) => {
   return (
     <div>
-      List items to go here
+      <ul className="list__container">
+        {listItems.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </div>
-  )
-}
+  );
+};
 
-export default ToDoList
+export default ToDoList;
