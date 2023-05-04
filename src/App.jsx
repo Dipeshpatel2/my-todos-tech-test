@@ -14,6 +14,7 @@ const App = () => {
     setListItems(newList);
     setTodo('');
   };
+
   return (
     <div className='App'>
       <h1 className='App__heading'>My Todos</h1>

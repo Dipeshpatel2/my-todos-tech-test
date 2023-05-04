@@ -1,2 +1,11 @@
-.list__container{
-}
+.list__container {
+    font-size: 15px;
+  
+    .list__button {
+      width: 90px;
+      height: 35px;
+      border-radius: 10px;
+      gap: 10px;
+    }
+  }
+  
