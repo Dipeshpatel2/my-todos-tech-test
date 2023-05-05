@@ -15,6 +15,11 @@ const App = () => {
     setTodo('');
   };
 
+  const handleDeleteItem = (item) => {
+    const filteredList = listItems.filter((listItem) => listItem !== item);
+    setListItems(filteredList);
+  };
+
   return (
     <div className='App'>
       <h1 className='App__heading'>My Todos</h1>
@@ -25,6 +30,7 @@ const App = () => {
       />
       <ToDoList
         listItems={listItems}
+        handleDeleteItem ={handleDeleteItem}
       />
     </div>
   );
