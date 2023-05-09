@@ -4,12 +4,11 @@ import ToDoList from './components/ToDoList/ToDoList';
 import ToDoForm from './components/ToDoForm/ToDoForm';
 
 const App = () => {
-  //initial variable todo, set to an empty string as default
   const [todo, setTodo] = useState('');
-  //an empty array that will hold the listed items
   const [listItems, setListItems] = useState([]);
+  const [completedItems, setCompletedItems] = useState([]);
 
-  const handleAddToDo = () => { 
+  const handleAddToDo = () => {
     const newList = [...listItems, todo];
     setListItems(newList);
     setTodo('');
@@ -18,19 +17,32 @@ const App = () => {
   const handleDeleteItem = (item) => {
     const filteredList = listItems.filter((listItem) => listItem !== item);
     setListItems(filteredList);
+    const filteredCompletedItems = completedItems.filter(
+      (completedItem) => completedItem !== item
+    );
+    setCompletedItems(filteredCompletedItems);
+  };
+
+  const handleToggleComplete = (item) => {
+    if (completedItems.includes(item)) {
+      const filteredCompletedItems = completedItems.filter(
+        (completedItem) => completedItem !== item
+      );
+      setCompletedItems(filteredCompletedItems);
+    } else {
+      setCompletedItems([...completedItems, item]);
+    }
   };
 
   return (
     <div className='App'>
       <h1 className='App__heading'>My Todos</h1>
-      <ToDoForm
-        todo={todo}
-        setTodo={setTodo}
-        handleAddToDo={handleAddToDo}
-      />
+      <ToDoForm todo={todo} setTodo={setTodo} handleAddToDo={handleAddToDo} />
       <ToDoList
         listItems={listItems}
-        handleDeleteItem ={handleDeleteItem}
+        completedItems={completedItems}
+        handleDeleteItem={handleDeleteItem}
+        handleToggleComplete={handleToggleComplete}
       />
     </div>
   );

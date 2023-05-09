@@ -1,15 +1,32 @@
 import React from "react";
 import "./ToDoList.scss";
 
-const ToDoList = ({ listItems, handleDeleteItem }) => {
+const ToDoList = ({
+  listItems,
+  completedItems,
+  handleDeleteItem,
+  handleToggleComplete,
+}) => {
   return (
-    <div>
+    <div className="todo-list">
       <ul className="list__container">
         {listItems.map((item, index) => (
-          <li key={index}>
+          <li
+            key={index}
+            className={completedItems.includes(item) && "completed"}
+          >
             {item}
-            <br/>
-            <button className="list__button" onClick={() => handleDeleteItem(item)}>
+            <br />
+            <button
+              className="list__button"
+              onClick={() => handleToggleComplete(item)}
+            >
+              Completed Item
+            </button>
+            <button
+              className="list__button"
+              onClick={() => handleDeleteItem(item)}
+            >
               Delete Item
             </button>
           </li>
